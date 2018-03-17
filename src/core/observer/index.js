@@ -32,7 +32,7 @@ export function toggleObserving (value: boolean) {
  * object's property keys into getter/setters that
  * collect dependencies and dispatch updates.
  */
-export class Observer {
+export class Observer { //传入data的引用，新建一个Observer对象
   value: any;
   dep: Dep;
   vmCount: number; // number of vms that has this object as root $data
@@ -41,7 +41,11 @@ export class Observer {
     this.value = value
     this.dep = new Dep()
     this.vmCount = 0
-    def(value, '__ob__', this)
+    def(value, '__ob__', this)  /*
+                                      def:
+                                      使用Object.defineProperty 新建或者修改一个对象的属性
+                                      这里是在data对象上新建__ob__属性，属性值为Observer类的实例
+                                */
     if (Array.isArray(value)) {
       const augment = hasProto
         ? protoAugment

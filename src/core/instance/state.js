@@ -298,6 +298,10 @@ function createWatcher (
   options?: Object
 ) {
   if (isPlainObject(handler)) {
+                                /*
+                                  isPlainObject:
+                                  return Object.prototype.toString.call(obj) === [object Object]'
+                                */
     options = handler
     handler = handler.handler
   }
